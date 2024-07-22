@@ -22,7 +22,7 @@ public enum ClassType
 
     CLASS_MAGE,
     CLASS_WARRIOR,
-    CLASS_DRUID,
+    CLASS_THIEF,
     CLASS_NOBLE,
 
     DEFAULT
@@ -32,17 +32,17 @@ public enum LandType
 {
     EMPTY_VAL = -1,
 
-    LAND_FOREST,
-    LAND_CITY,
-    LAND_OCEAN,
-    LAND_FARM,
+    LAND_KAMNIA,
+    LAND_FEUIVETER,
+    LAND_VARVORGRUD,
+    LAND_BOGRAVEN,
 
     DEFAULT
 }
 
 
-[CreateAssetMenu(fileName = "PersonDescription", menuName = "ScriptableObjects/PersonDescription", order = 2)]
-public class PersonDescription : ScriptableObject
+//[CreateAssetMenu(fileName = "PersonDescription", menuName = "ScriptableObjects/PersonDescription", order = 2)]
+public struct PersonDescription
 {
     public RaceType  m_Race;
     public ClassType m_Class;

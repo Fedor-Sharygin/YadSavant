@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class IngredientButton : MonoBehaviour
 {
-    private Button m_Button;
-    private void Awake()
-    {
-        m_Button = GetComponent<Button>();
-    }
+    [SerializeField]
+    private IngredientDescriptor m_Ingredient;
+
+    [SerializeField]
+    private SpriteRenderer m_ButtonSprite;
 }

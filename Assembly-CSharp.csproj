@@ -58,12 +58,14 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Ingredients\IngredientDescriptor.cs" />
     <Compile Include="Assets\Scripts\GeneralComponents\CommonClassesMethods.cs" />
+    <Compile Include="Assets\Scripts\UI\IngredientButton.cs" />
     <Compile Include="Assets\Scripts\Ingredients\IngredientContainer.cs" />
     <Compile Include="Assets\Scripts\Customers\PersonDescription.cs" />
     <Compile Include="Assets\Scripts\Ingredients\PotionResult.cs" />
     <Compile Include="Assets\Scripts\GeneralComponents\Timer.cs" />
     <Compile Include="Assets\Scripts\GeneralComponents\ObjectSocket.cs" />
-    <Compile Include="Assets\Scripts\UI\IngredientButton.cs" />
+    <Compile Include="Assets\Scripts\UI\IngredientDraggable.cs" />
+    <Compile Include="Assets\Scripts\GlobalUtilities.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
