@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IngredientType: 0
   m_IngredientName: 
-  m_IngredientSprite: {fileID: 0}
+  m_IngredientSprite: {fileID: 21300000, guid: 6a885cd3d01ac4d4797810aeed14c11a, type: 3}
   m_RaceEffectiveness: 00000000000000000000000000000000000000000000000000000000
   m_ClassEffectiveness: 00000000000000000000000000000000000000000000000000000000
   m_LandEffectiveness: 00000000000000000000000000000000000000000000000000000000

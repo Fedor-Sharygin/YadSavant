@@ -13,4 +13,11 @@ public class PotionResult : MonoBehaviour
         (m_RaceIngredient  == null ? 0 : m_RaceIngredient .GetEffectivenessScore(p_TargetDescription.m_Race)) +
         (m_ClassIngredient == null ? 0 : m_ClassIngredient.GetEffectivenessScore(p_TargetDescription.m_Class)) +
         (m_LandIngredient  == null ? 0 : m_LandIngredient .GetEffectivenessScore(p_TargetDescription.m_Land));
+
+    public void ClearPotion()
+    {
+        m_RaceIngredient  = null;
+        m_ClassIngredient = null;
+        m_LandIngredient  = null;
+    }
 }

@@ -2,26 +2,47 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
-public class IngredientDraggable : MonoBehaviour,
+public class DraggableObject : MonoBehaviour,
     IDragHandler, IBeginDragHandler, IEndDragHandler
 {
+    [HideInInspector]
+    public UnityEvent<Transform> OnObjectReleased = new UnityEvent<Transform>();
+    private void Awake()
+    {
+        foreach (var IA in GameObject.FindGameObjectsWithTag("IngredientArea"))
+        {
+            OnObjectReleased.AddListener(IA.GetComponent<DropArea>().IngredientReleased);
+        }
+        OnObjectReleased.AddListener(GetComponentInParent<SpawnerIngredient>().OnIngredientReleased);
+    }
+
+
     [Header("Movement Properties")]
     [SerializeField]
     private float m_MouseSpeedLimit = 50;
     [SerializeField]
     private float m_ReturnSpeedLimit = 50;
+    [SerializeField]
+    private float m_StartingScaleSpeed = 50;
+
 
     private bool m_IsDragging = false;
     private Vector3 m_MouseOffset;
-
     private void Update()
     {
-        ClampPosition();
+        if (transform.localScale.x < 1 - .005f)
+        {
+            transform.localScale = Vector3.Lerp(transform.localScale, Vector3.one, m_StartingScaleSpeed * GlobalUtilities.DeltaTime);
+            return;
+        }
+
 
         if (m_IsDragging)
         {
+            ClampPosition();
             Vector2 TargetPos = Camera.main.ScreenToWorldPoint(Input.mousePosition) - m_MouseOffset;
             Vector2 Direction = (TargetPos - (Vector2)transform.position).normalized;
             Vector2 Velocity = Direction * Mathf.Min(m_MouseSpeedLimit, Vector2.Distance(transform.position, TargetPos) / GlobalUtilities.DeltaTime);
@@ -44,8 +65,15 @@ public class IngredientDraggable : MonoBehaviour,
         Debug.Log($"Pos - {ClampedPos}");
     }
 
+    private bool m_Draggable = true;
+    public void DisableDrag() => m_Draggable = false;
     public void OnBeginDrag(PointerEventData eventData)
     {
+        if (!m_Draggable)
+        {
+            return;
+        }
+
         Vector2 MousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         m_MouseOffset = MousePos - (Vector2)transform.position;
         //m_MouseOffset = Input.mousePosition - transform.position;
@@ -59,7 +87,13 @@ public class IngredientDraggable : MonoBehaviour,
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        if (!m_Draggable)
+        {
+            return;
+        }
+
         m_IsDragging = false;
+        OnObjectReleased?.Invoke(transform);
     }
 
 }
