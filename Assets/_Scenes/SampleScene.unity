@@ -329,7 +329,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 516446102}
-  - component: {fileID: 516446106}
   - component: {fileID: 516446105}
   - component: {fileID: 516446104}
   - component: {fileID: 516446103}
@@ -439,24 +438,6 @@ MonoBehaviour:
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 516446103}
---- !u!114 &516446106
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 516446101}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 010384139eda4a343af037af88c0580b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnObjectReleased:
-    m_PersistentCalls:
-      m_Calls: []
-  m_MouseSpeedLimit: 50
-  m_ReturnSpeedLimit: 50
-  m_StartingScaleSpeed: 50
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
