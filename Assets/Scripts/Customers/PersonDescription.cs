@@ -47,4 +47,7 @@ public struct PersonDescription
     public RaceType  m_Race;
     public ClassType m_Class;
     public LandType  m_Land;
+
+    public int m_TargetRangeMin;
+    public int m_TargetRangeMax;
 }

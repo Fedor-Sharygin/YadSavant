@@ -5,7 +5,7 @@ using System.IO;
 
 public static class CSVFileLoader
 {
-    public static void LoadTable(string p_TablePath, System.Action<string> p_FileProcessor, MonoBehaviour p_Caller)
+    public static IEnumerator LoadTable(string p_TablePath, System.Action<string, object[]> p_FileProcessor, params object[] p_Params)
     {
         string CSVFilePath;
         // Determine the correct path based on the platform
@@ -14,13 +14,8 @@ public static class CSVFileLoader
         #else
             CSVFilePath = "file://" + Path.Combine(Application.streamingAssetsPath, $"{p_TablePath}.csv");
         #endif
-
-        p_Caller.StartCoroutine(LoadCSVFile(CSVFilePath, p_FileProcessor));
-    }
-
-    private static IEnumerator LoadCSVFile(string p_FilePath, System.Action<string> p_FileProcessor)
-    {
-        using (UnityWebRequest www = UnityWebRequest.Get(p_FilePath))
+        
+        using (UnityWebRequest www = UnityWebRequest.Get(CSVFilePath))
         {
             yield return www.SendWebRequest();
 
@@ -32,7 +27,7 @@ public static class CSVFileLoader
             else
             {
                 string CSVData = www.downloadHandler.text;
-                p_FileProcessor?.Invoke(CSVData);
+                p_FileProcessor?.Invoke(CSVData, p_Params);
             }
         }
     }

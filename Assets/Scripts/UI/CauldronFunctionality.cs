@@ -14,15 +14,6 @@ public class CauldronFunctionality : MonoBehaviour
     [SerializeField]
     private PotionResult m_Potion;
 
-    private void Start()
-    {
-        CSVFileLoader.LoadTable("Days", OnDayListLoaded, this);
-    }
-    private void OnDayListLoaded(string p_TableText)
-    {
-        //Debug.Log($"YEZYEZYEZ - {p_TableText}");
-    }
-
     public void DumpIngredients()
     {
         foreach (var IH in m_IngredientHolders)
@@ -37,8 +28,10 @@ public class CauldronFunctionality : MonoBehaviour
     }
 
 
-    private PersonDescription m_Target;
-    public void ReceiveCustomer(PersonDescription p_Target) => m_Target = p_Target;
+    [SerializeField]
+    private DayManager m_DayManager;
+    //private PersonDescription m_Target;
+    //public void ReceiveCustomer(PersonDescription p_Target) => m_Target = p_Target;
     public void BrewPotion()
     {
         int idx = 0;
@@ -74,12 +67,7 @@ public class CauldronFunctionality : MonoBehaviour
             ++idx;
         }
 
-        m_Potion.GetPotionTargetScore(m_Target);
-    }
-
-    public int m_CurDay { get; private set; } = 0;
-    public void NextDay()
-    {
-        m_CurDay++;
+        m_Potion.GetPotionTargetScore(m_DayManager.CurrentCustomer);
+        m_DayManager.GetNextCustomer();
     }
 }
