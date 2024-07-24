@@ -67,7 +67,7 @@ public class CauldronFunctionality : MonoBehaviour
             ++idx;
         }
 
-        m_Potion.GetPotionTargetScore(m_DayManager.CurrentCustomer);
+        m_DayManager.ReceiveResult(m_Potion.GetPotionTargetScore(m_DayManager.CurrentCustomer));
         m_DayManager.GetNextCustomer();
     }
 }

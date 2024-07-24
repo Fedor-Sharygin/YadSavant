@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class DayManager : MonoBehaviour
 {
@@ -18,7 +19,12 @@ public class DayManager : MonoBehaviour
 
     private void Awake()
     {
-        CSVFileLoader.LoadTable("Days", OnDayListLoaded, null);
+        StartCoroutine(LoadTable());
+    }
+    private IEnumerator LoadTable()
+    {
+        yield return CSVFileLoader.LoadTable("Days", OnDayListLoaded, null);
+        GetNextCustomer();
     }
     private void OnDayListLoaded(string p_TableText, params object[] _p_Params)
     {
@@ -33,7 +39,7 @@ public class DayManager : MonoBehaviour
                 m_Days.Add(new List<PersonDescription>());
             }
 
-            m_Days[CurParsedDay - 1].Add(
+            m_Days[CurParsedDay-1].Add(
                 new PersonDescription
                 {
                     m_Race  =  (RaceType)int.Parse(RowSplit[1]),
@@ -47,16 +53,27 @@ public class DayManager : MonoBehaviour
         }
     }
 
-
     [SerializeField]
     private UnityEvent m_NextDayReaction;
+    [SerializeField]
+    private TMPro.TextMeshProUGUI m_DayText;
+    [SerializeField]
+    private TMPro.TextMeshProUGUI m_ResultsText;
     private void OnNextDay()
     {
+        m_DayText.text = $"Day {m_CurDay}";
+        m_ResultsText.text = "";
+        for (int i = 0; i < m_Days[m_CurDay-1].Count; ++i)
+        {
+            m_ResultsText.text += $"{m_Days[m_CurDay-1][i].GetRaceName()} {m_Days[m_CurDay-1][i].GetClassName()} from the land of {m_Days[m_CurDay-1][i].GetLandName()} was {m_Days[m_CurDay-1][i].GetResult(m_CustResult[i])} - {m_Days[m_CurDay-1][i].GetResultState(m_CustResult[i])}\n\n\n\n";
+        }
+
         m_CurDay++;
         m_CurCustomer = 0;
+        m_CustResult.Clear();
         m_NextDayReaction?.Invoke();
 
-        if (m_CurDay > m_Days.Capacity)
+        if (m_CurDay > m_Days.Count)
         {
             //END THE GAME
         }
@@ -69,9 +86,14 @@ public class DayManager : MonoBehaviour
         }
 
         m_CurCustomer++;
-        if (m_CurCustomer >= m_Days[m_CurDay-1].Capacity)
+        if (m_CurCustomer >= m_Days[m_CurDay-1].Count)
         {
             OnNextDay();
         }
+    }
+    private List<int> m_CustResult = new List<int>();
+    public void ReceiveResult(int p_BrewResult)
+    {
+        m_CustResult.Add(p_BrewResult);
     }
 }
