@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PotionResult : MonoBehaviour
+public class PotionResult
 {
     public IngredientDescriptor m_RaceIngredient;
     public IngredientDescriptor m_ClassIngredient;

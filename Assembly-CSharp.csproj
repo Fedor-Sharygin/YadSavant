@@ -73,6 +73,7 @@
     <Compile Include="Assets\Scripts\CSVFileLoader.cs" />
     <Compile Include="Assets\Scripts\UI\BookCollection.cs" />
     <Compile Include="Assets\Scripts\Customers\DayManager.cs" />
+    <Compile Include="Assets\Scripts\RandomAudio.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

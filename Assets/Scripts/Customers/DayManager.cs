@@ -25,6 +25,7 @@ public class DayManager : MonoBehaviour
     {
         yield return CSVFileLoader.LoadTable("Days", OnDayListLoaded, null);
         GetNextCustomer();
+        ShowNextCustomer();
     }
     private void OnDayListLoaded(string p_TableText, params object[] _p_Params)
     {
@@ -92,8 +93,26 @@ public class DayManager : MonoBehaviour
         }
     }
     private List<int> m_CustResult = new List<int>();
+    [SerializeField]
+    private Timer m_NextOrderTimer;
     public void ReceiveResult(int p_BrewResult)
     {
         m_CustResult.Add(p_BrewResult);
+        m_OrderAnimator?.SetTrigger("SlideOut");
+        if (m_CurCustomer < m_Days[m_CurDay - 1].Count - 1)
+        {
+            m_NextOrderTimer?.ResetTimer();
+            m_NextOrderTimer?.Play();
+        }
+    }
+
+    [SerializeField]
+    private TMPro.TextMeshProUGUI m_OrderText;
+    [SerializeField]
+    private Animator m_OrderAnimator;
+    public void ShowNextCustomer()
+    {
+        m_OrderText.text = $"{CurrentCustomer.GetRaceName()} {CurrentCustomer.GetClassName()} {CurrentCustomer.GetLandName()}";
+        m_OrderAnimator?.SetTrigger("SlideIn");
     }
 }

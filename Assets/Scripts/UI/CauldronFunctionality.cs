@@ -8,11 +8,10 @@ public class CauldronFunctionality : MonoBehaviour
     [SerializeField]
     private Transform[] m_IngredientHolders = new Transform[3];
     [SerializeField]
-    private Transform m_DumpTarget;
+    private ObjectSocket m_DumpTarget;
     [SerializeField]
-    private Transform m_PotionTarget;
-    [SerializeField]
-    private PotionResult m_Potion;
+    private ObjectSocket m_PotionTarget;
+    private PotionResult m_Potion = new PotionResult();
 
     public void DumpIngredients()
     {
@@ -23,7 +22,9 @@ public class CauldronFunctionality : MonoBehaviour
                 continue;
             }
 
-            IH.GetChild(0).SetParent(m_DumpTarget);
+            IH.GetChild(0).GetComponent<DraggableObject>().m_SelfMovement = false;
+            m_DumpTarget.ForceStack(IH.GetChild(0));
+            IH.GetComponent<DropArea>()?.LetGoOfIngredient();
         }
     }
 
@@ -41,8 +42,8 @@ public class CauldronFunctionality : MonoBehaviour
             {
                 continue;
             }
-
             var CurIngred = IH.GetChild(0);
+
             switch (idx)
             {
                 case 0:
@@ -63,8 +64,16 @@ public class CauldronFunctionality : MonoBehaviour
 
                 default: break;
             }
-            //CurIngred.SetParent(m_PotionTarget);
+            CurIngred.GetComponent<DraggableObject>().m_SelfMovement = false;
+            m_PotionTarget.ForceStack(CurIngred);
+            IH.GetComponent<DropArea>()?.LetGoOfIngredient();
             ++idx;
+        }
+
+        //not all ingredients were present
+        if (idx != m_IngredientHolders.Length)
+        {
+            return;
         }
 
         m_DayManager.ReceiveResult(m_Potion.GetPotionTargetScore(m_DayManager.CurrentCustomer));

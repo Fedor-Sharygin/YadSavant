@@ -6,7 +6,8 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
 public class DraggableObject : MonoBehaviour,
-    IDragHandler, IBeginDragHandler, IEndDragHandler
+    IDragHandler, IBeginDragHandler, IEndDragHandler,
+    IPointerEnterHandler, IPointerExitHandler
 {
     [HideInInspector]
     public UnityEvent<Transform> OnObjectReleased = new UnityEvent<Transform>();
@@ -28,11 +29,16 @@ public class DraggableObject : MonoBehaviour,
     [SerializeField]
     private float m_StartingScaleSpeed = 50;
 
-
+    public bool m_SelfMovement = true;
     private bool m_IsDragging = false;
     private Vector3 m_MouseOffset;
     private void Update()
     {
+        if (!m_SelfMovement)
+        {
+            return;
+        }
+
         if (transform.localScale.x < 1 - .005f)
         {
             transform.localScale = Vector3.Lerp(transform.localScale, Vector3.one, m_StartingScaleSpeed * GlobalUtilities.DeltaTime);
@@ -57,16 +63,17 @@ public class DraggableObject : MonoBehaviour,
     private void ClampPosition()
     {
         Vector2 ScreenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
-        Debug.Log($"Bounds - {ScreenBounds}");
+        //Debug.Log($"Bounds - {ScreenBounds}");
         Vector3 ClampedPos = transform.position;
         ClampedPos.x = Mathf.Clamp(ClampedPos.x, -ScreenBounds.x, ScreenBounds.x);
         ClampedPos.y = Mathf.Clamp(ClampedPos.y, -ScreenBounds.y, ScreenBounds.y);
         transform.position = new Vector3(ClampedPos.x, ClampedPos.y, 0);
-        Debug.Log($"Pos - {ClampedPos}");
+        //Debug.Log($"Pos - {ClampedPos}");
     }
 
     private bool m_Draggable = true;
     public void DisableDrag() => m_Draggable = false;
+    public void EnableDrag()  => m_Draggable = true;
     public void OnBeginDrag(PointerEventData eventData)
     {
         if (!m_Draggable)
@@ -96,4 +103,15 @@ public class DraggableObject : MonoBehaviour,
         OnObjectReleased?.Invoke(transform);
     }
 
+
+    [SerializeField]
+    private UnityEvent m_OnPointerEnter;
+    public void OnPointerEnter(PointerEventData p_EventData)
+    {
+        m_OnPointerEnter?.Invoke();
+    }
+    public void OnPointerExit(PointerEventData p_EventData)
+    {
+        //???
+    }
 }

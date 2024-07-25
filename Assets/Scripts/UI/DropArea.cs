@@ -30,4 +30,8 @@ public class DropArea : MonoBehaviour,
         p_IngredientTransform.GetComponent<Selectable>().interactable = false;
         p_IngredientTransform.GetComponent<DraggableObject>().DisableDrag();
     }
+    public void LetGoOfIngredient()
+    {
+        m_AreaFull = false;
+    }
 }
