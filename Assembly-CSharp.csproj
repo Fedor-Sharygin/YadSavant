@@ -74,6 +74,7 @@
     <Compile Include="Assets\Scripts\UI\BookCollection.cs" />
     <Compile Include="Assets\Scripts\Customers\DayManager.cs" />
     <Compile Include="Assets\Scripts\RandomAudio.cs" />
+    <Compile Include="Assets\Scripts\UI\MainMenu.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

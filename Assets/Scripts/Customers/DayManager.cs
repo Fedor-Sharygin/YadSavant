@@ -24,8 +24,6 @@ public class DayManager : MonoBehaviour
     private IEnumerator LoadTable()
     {
         yield return CSVFileLoader.LoadTable("Days", OnDayListLoaded, null);
-        GetNextCustomer();
-        ShowNextCustomer();
     }
     private void OnDayListLoaded(string p_TableText, params object[] _p_Params)
     {
@@ -52,6 +50,9 @@ public class DayManager : MonoBehaviour
                 }
             );
         }
+
+        GetNextCustomer();
+        ShowNextCustomer();
     }
 
     [SerializeField]
