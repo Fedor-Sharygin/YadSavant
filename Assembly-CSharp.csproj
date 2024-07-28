@@ -56,25 +56,27 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\UI\MainMenu.cs" />
+    <Compile Include="Assets\Scripts\CSVFileLoader.cs" />
     <Compile Include="Assets\Scripts\GlobalUtilities.cs" />
     <Compile Include="Assets\Scripts\Ingredients\IngredientDescriptor.cs" />
+    <Compile Include="Assets\Scripts\Customers\CustomerBehavior.cs" />
+    <Compile Include="Assets\Scripts\Customers\DayManager.cs" />
     <Compile Include="Assets\Scripts\GeneralComponents\CommonClassesMethods.cs" />
     <Compile Include="Assets\Scripts\UI\DraggableObject.cs" />
+    <Compile Include="Assets\Scripts\UI\BookCollection.cs" />
     <Compile Include="Assets\Scripts\UI\DropArea.cs" />
     <Compile Include="Assets\Scripts\UI\CauldronFunctionality.cs" />
     <Compile Include="Assets\Scripts\Ingredients\IngredientContainer.cs" />
     <Compile Include="Assets\Scripts\Customers\PersonDescription.cs" />
+    <Compile Include="Assets\Scripts\RandomAudio.cs" />
     <Compile Include="Assets\Scripts\Ingredients\PotionResult.cs" />
     <Compile Include="Assets\Scripts\UI\ObjectDestroyer.cs" />
     <Compile Include="Assets\Scripts\UI\SpawnerIngredient.cs" />
     <Compile Include="Assets\Scripts\GeneralComponents\Timer.cs" />
     <Compile Include="Assets\Scripts\GeneralComponents\ObjectSocket.cs" />
-    <Compile Include="Assets\Scripts\Customers\CustomerBehavior.cs" />
-    <Compile Include="Assets\Scripts\CSVFileLoader.cs" />
-    <Compile Include="Assets\Scripts\UI\BookCollection.cs" />
-    <Compile Include="Assets\Scripts\Customers\DayManager.cs" />
-    <Compile Include="Assets\Scripts\RandomAudio.cs" />
-    <Compile Include="Assets\Scripts\UI\MainMenu.cs" />
+    <Compile Include="Assets\Scripts\TextPresenter.cs" />
+    <Compile Include="Assets\Scripts\GrabResults.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

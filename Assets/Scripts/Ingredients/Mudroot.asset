@@ -15,6 +15,6 @@ MonoBehaviour:
   m_IngredientType: 0
   m_IngredientName: 
   m_IngredientSprite: {fileID: 21300000, guid: f8de3801c5f12c5419fb46ce92330a0a, type: 3}
-  m_RaceEffectiveness: 00000000000000000000000000000000000000000000000000000000
-  m_ClassEffectiveness: 00000000000000000000000000000000000000000000000000000000
-  m_LandEffectiveness: 00000000000000000000000000000000000000000000000000000000
+  m_RaceEffectiveness: ffffffffffffffff01000000ffffffff020000000000000002000000
+  m_ClassEffectiveness: ffffffffffffffffffffffff02000000ffffffff0300000000000000
+  m_LandEffectiveness: 0300000002000000ffffffffffffffffffffffff01000000ffffffff

@@ -2,10 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class DayManager : MonoBehaviour
 {
+    public static int SuccessfullResults = 0;
+    public static int TotalResults = 0;
+
     private int m_CurDay = 0;
     private int m_CurCustomer = -1;
     private List<List<PersonDescription>> m_Days = new List<List<PersonDescription>>();
@@ -51,6 +55,8 @@ public class DayManager : MonoBehaviour
             );
         }
 
+        TotalResults = DaysDescription.Length - 1;
+
         GetNextCustomer();
         ShowNextCustomer();
     }
@@ -61,6 +67,8 @@ public class DayManager : MonoBehaviour
     private TMPro.TextMeshProUGUI m_DayText;
     [SerializeField]
     private TMPro.TextMeshProUGUI m_ResultsText;
+    [SerializeField]
+    private UnityEvent m_LastDayReaction;
     private void OnNextDay()
     {
         m_DayText.text = $"Day {m_CurDay}";
@@ -77,7 +85,7 @@ public class DayManager : MonoBehaviour
 
         if (m_CurDay > m_Days.Count)
         {
-            //END THE GAME
+            m_LastDayReaction?.Invoke();
         }
     }
     public void GetNextCustomer()
@@ -100,6 +108,7 @@ public class DayManager : MonoBehaviour
     {
         m_CustResult.Add(p_BrewResult);
         m_OrderAnimator?.SetTrigger("SlideOut");
+        DayManager.SuccessfullResults += CurrentCustomer.GetResultSuccess(p_BrewResult) ? 1 : 0;
         if (m_CurCustomer < m_Days[m_CurDay - 1].Count - 1)
         {
             m_NextOrderTimer?.ResetTimer();
@@ -115,5 +124,13 @@ public class DayManager : MonoBehaviour
     {
         m_OrderText.text = $"{CurrentCustomer.GetRaceName()} {CurrentCustomer.GetClassName()} {CurrentCustomer.GetLandName()}";
         m_OrderAnimator?.SetTrigger("SlideIn");
+    }
+
+
+    [SerializeField]
+    private string m_NextLevelName;
+    public void LoadNextLevel()
+    {
+        SceneManager.LoadScene(m_NextLevelName);
     }
 }

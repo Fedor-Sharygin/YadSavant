@@ -175,4 +175,5 @@ public struct PersonDescription
         }
     }
     public string GetResultState(int p_PoisonScore) => (p_PoisonScore < m_TargetRangeMin || p_PoisonScore > m_TargetRangeMax) ? "Failed" : "Success";
+    public bool GetResultSuccess(int p_PoisonScore) => !(p_PoisonScore < m_TargetRangeMin || p_PoisonScore > m_TargetRangeMax);
 }

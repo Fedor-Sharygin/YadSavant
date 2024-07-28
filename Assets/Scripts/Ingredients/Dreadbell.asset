@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a871f4bc0834b41409ed2806fa19723a, type: 3}
   m_Name: Dreadbell
   m_EditorClassIdentifier: 
-  m_IngredientType: 0
+  m_IngredientType: 4
   m_IngredientName: 
   m_IngredientSprite: {fileID: 0}
-  m_RaceEffectiveness: 00000000000000000000000000000000000000000000000000000000
-  m_ClassEffectiveness: 00000000000000000000000000000000000000000000000000000000
-  m_LandEffectiveness: 00000000000000000000000000000000000000000000000000000000
+  m_RaceEffectiveness: ffffffffffffffff03000000ffffffff040000000000000002000000
+  m_ClassEffectiveness: ffffffffffffffffffffffffffffffff0000000001000000ffffffff
+  m_LandEffectiveness: ffffffff0300000002000000ffffffff00000000ffffffff01000000
