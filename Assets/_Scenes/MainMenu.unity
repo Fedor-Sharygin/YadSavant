@@ -1101,7 +1101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_CreditsAnimator: {fileID: 1442301974}
-  m_GameLevelName: MainGame
+  m_GameLevelName: StoryScene
 --- !u!95 &1442301974
 Animator:
   serializedVersion: 5
