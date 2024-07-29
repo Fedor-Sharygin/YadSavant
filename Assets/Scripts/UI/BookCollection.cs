@@ -63,6 +63,8 @@ public class BookCollection : MonoBehaviour
     private TMPro.TextMeshProUGUI m_PageText;
     [SerializeField]
     private Image m_PageImage;
+    [SerializeField]
+    private List<Sprite> m_PageSprites;
     public void TurnPage(int p_TurnedPages)
     {
         int PrevPage = m_CurPage;
@@ -75,6 +77,13 @@ public class BookCollection : MonoBehaviour
             return;
         }
 
-        m_PageText.text = m_Pages[m_CurPage];
+        if (m_PageText != null)
+        {
+            m_PageText.text = m_Pages[m_CurPage];
+        }
+        if (m_PageImage != null)
+        {
+            m_PageImage.sprite = m_PageSprites[m_CurPage];
+        }
     }
 }

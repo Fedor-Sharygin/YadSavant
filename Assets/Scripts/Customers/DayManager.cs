@@ -116,13 +116,43 @@ public class DayManager : MonoBehaviour
         }
     }
 
+    //[SerializeField]
+    //private TMPro.TextMeshProUGUI m_OrderText;
     [SerializeField]
-    private TMPro.TextMeshProUGUI m_OrderText;
+    private List<Image> m_OrderImages;
+    [SerializeField]
+    private List<Sprite> m_OrderSprites;
     [SerializeField]
     private Animator m_OrderAnimator;
     public void ShowNextCustomer()
     {
-        m_OrderText.text = $"{CurrentCustomer.GetRaceName()} {CurrentCustomer.GetClassName()} {CurrentCustomer.GetLandName()}";
+        int CurImageIdx = Random.Range(0, m_OrderImages.Count);
+        int CurImageDir = Random.Range(0, 2) == 0 ? 1 : -1;
+        Sprite CurSprite = null;
+        for (int i = 0; i < m_OrderImages.Count; ++i)
+        {
+            switch (i)
+            {
+                case 0:
+                    {
+                        CurSprite = m_OrderSprites[(int)CurrentCustomer.m_Race];
+                    }
+                    break;
+                case 1:
+                    {
+                        CurSprite = m_OrderSprites[(int)RaceType.DEFAULT + (int)CurrentCustomer.m_Class];
+                    }
+                    break;
+                case 2:
+                    {
+                        CurSprite = m_OrderSprites[(int)RaceType.DEFAULT + (int)ClassType.DEFAULT + (int)CurrentCustomer.m_Land];
+                    }
+                    break;
+            }
+            m_OrderImages[(CurImageIdx + m_OrderImages.Count) % m_OrderImages.Count].sprite = CurSprite;
+            CurImageIdx += CurImageDir;
+        }
+        //m_OrderText.text = $"{CurrentCustomer.GetRaceName()} {CurrentCustomer.GetClassName()} {CurrentCustomer.GetLandName()}";
         m_OrderAnimator?.SetTrigger("SlideIn");
     }
 

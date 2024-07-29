@@ -77,6 +77,7 @@
     <Compile Include="Assets\Scripts\GeneralComponents\ObjectSocket.cs" />
     <Compile Include="Assets\Scripts\TextPresenter.cs" />
     <Compile Include="Assets\Scripts\GrabResults.cs" />
+    <Compile Include="Assets\Scripts\UI\OrderPresenter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
