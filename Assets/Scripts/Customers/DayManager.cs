@@ -36,7 +36,7 @@ public class DayManager : MonoBehaviour
         for (int i = 1; i < DaysDescription.Length; ++i)
         {
             var RowSplit = DaysDescription[i].Split(',');
-            if (!string.IsNullOrEmpty(RowSplit[0]) && CurParsedDay != int.Parse(RowSplit[0]))
+            if (!string.IsNullOrEmpty(RowSplit[0]) && !string.IsNullOrWhiteSpace(RowSplit[0]) && CurParsedDay != int.Parse(RowSplit[0]))
             {
                 CurParsedDay = int.Parse(RowSplit[0]);
                 m_Days.Add(new List<PersonDescription>());

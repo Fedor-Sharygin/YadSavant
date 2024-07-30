@@ -153,19 +153,19 @@ public struct PersonDescription
         {
             return "pleasantly surprised";
         }
-        else if (p_PoisonScore < 3)
+        else if (p_PoisonScore < 2)
         {
             return "unaffected";
         }
-        else if (p_PoisonScore < 7)
+        else if (p_PoisonScore < 5)
         {
             return "left with an upset stomach";
         }
-        else if (p_PoisonScore < 12)
+        else if (p_PoisonScore < 8)
         {
             return "left dead";
         }
-        else if (p_PoisonScore < 15)
+        else if (p_PoisonScore < 12)
         {
             return "unrecognizable";
         }

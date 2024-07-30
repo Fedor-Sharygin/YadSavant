@@ -62,7 +62,9 @@
     <Compile Include="Assets\Scripts\Ingredients\IngredientDescriptor.cs" />
     <Compile Include="Assets\Scripts\Customers\CustomerBehavior.cs" />
     <Compile Include="Assets\Scripts\Customers\DayManager.cs" />
+    <Compile Include="Assets\Scripts\TextPresenter.cs" />
     <Compile Include="Assets\Scripts\GeneralComponents\CommonClassesMethods.cs" />
+    <Compile Include="Assets\Scripts\UI\OrderPresenter.cs" />
     <Compile Include="Assets\Scripts\UI\DraggableObject.cs" />
     <Compile Include="Assets\Scripts\UI\BookCollection.cs" />
     <Compile Include="Assets\Scripts\UI\DropArea.cs" />
@@ -75,9 +77,8 @@
     <Compile Include="Assets\Scripts\UI\SpawnerIngredient.cs" />
     <Compile Include="Assets\Scripts\GeneralComponents\Timer.cs" />
     <Compile Include="Assets\Scripts\GeneralComponents\ObjectSocket.cs" />
-    <Compile Include="Assets\Scripts\TextPresenter.cs" />
     <Compile Include="Assets\Scripts\GrabResults.cs" />
-    <Compile Include="Assets\Scripts\UI\OrderPresenter.cs" />
+    <Compile Include="Assets\DontKill.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

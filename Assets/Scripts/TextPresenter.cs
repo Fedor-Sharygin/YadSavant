@@ -21,14 +21,14 @@ public class TextPresenter : MonoBehaviour
 
     public void ShowNextLetter()
     {
-        if (m_CurTextIdx == m_Texts.Length)
+        if (m_CurTextIdx >= m_Texts.Length)
         {
             m_OnLastTextShownEvent?.Invoke();
             return;
         }
 
         m_TextMesh.text += m_Texts[m_CurTextIdx][m_StrIdx++];
-        if (m_StrIdx == m_Texts[m_CurTextIdx].Length)
+        if (m_StrIdx >= m_Texts[m_CurTextIdx].Length)
         {
             m_CurTextIdx++;
             m_StrIdx = 0;
@@ -41,5 +41,17 @@ public class TextPresenter : MonoBehaviour
     public void LoadNextLevel()
     {
         SceneManager.LoadScene(m_NextLevelName);
+    }
+
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) && m_CurTextIdx < m_Texts.Length)
+        {
+            m_TextMesh.text = m_Texts[m_CurTextIdx];
+            m_CurTextIdx++;
+            m_StrIdx = 0;
+            m_OnTextShownEvent?.Invoke();
+        }
     }
 }
