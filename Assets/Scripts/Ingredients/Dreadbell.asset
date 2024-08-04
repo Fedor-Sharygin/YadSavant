@@ -15,6 +15,6 @@ MonoBehaviour:
   m_IngredientType: 4
   m_IngredientName: 
   m_IngredientSprite: {fileID: 0}
-  m_RaceEffectiveness: ffffffffffffffff03000000ffffffff040000000000000002000000
-  m_ClassEffectiveness: ffffffffffffffffffffffffffffffff0000000001000000ffffffff
-  m_LandEffectiveness: ffffffff0300000002000000ffffffff00000000ffffffff01000000
+  m_RaceEffectiveness: ffffffffffffffff0100000000000000040000000300000002000000
+  m_ClassEffectiveness: ffffffff00000000ffffffff020000000100000003000000ffffffff
+  m_LandEffectiveness: 03000000ffffffffffffffffffffffff000000000200000001000000

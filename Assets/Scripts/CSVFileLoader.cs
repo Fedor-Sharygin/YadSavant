@@ -10,7 +10,7 @@ public static class CSVFileLoader
         string CSVFilePath;
         // Determine the correct path based on the platform
         #if UNITY_WEBGL && !UNITY_EDITOR
-            CSVFilePath = Path.Combine(Application.streamingAssetsPath, $"{p_TableName}.csv");
+            CSVFilePath = Path.Combine(Application.streamingAssetsPath, $"{p_TablePath}.csv");
         #else
             CSVFilePath = "file://" + Path.Combine(Application.streamingAssetsPath, $"{p_TablePath}.csv");
         #endif
